@@ -11,9 +11,9 @@ import sys
 import numpy as np
 
 if (len(sys.argv) < 2):
-    print('Usage: NiftiSegmenter.py train trainingFiles.csv validationFiles.csv model.h5 log.txt')
+    print('Usage: nifti.py train trainingFiles.csv validationFiles.csv model.h5 log.txt')
     print('       Or')
-    print('Usage: NiftiSegmenter.py test model.h5 input.nii segmentation.nii')
+    print('Usage: nifti.py test model.h5 input.nii segmentation.nii')
     sys.exit(1)
 
 
