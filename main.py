@@ -165,7 +165,7 @@ elif "test" in sys.argv[1]:
     image_path = sys.argv[3]
     output_path = sys.argv[4]
 
-    model = load_model(model_path, custom_objects={'overlapLoss': overlap_loss, 'overlap': overlap})
+    model = load_model(model_path, custom_objects={'overlap_loss': overlap_loss, 'overlap': overlap})
     nifti = nib.load(image_path)
     (nx, ny, nz) = nifti.shape[0:3]
     image = np.ndarray((1, nx, ny, nz, 1), dtype=np.float32)
@@ -174,3 +174,8 @@ elif "test" in sys.argv[1]:
     prediction = model.predict(image, batch_size=1)
     nifti_prediction = nib.Nifti1Image(prediction[0, :, :, :, 0], affine=nifti.affine, header=nifti.header)
     nib.save(nifti_prediction, output_path)
+
+elif "summary" in sys.argv[1]:
+    model_path = sys.argv[2]
+    model = load_model(model_path, custom_objects={'overlap_loss': overlap_loss, 'overlap': overlap})
+    print(model.summary())
